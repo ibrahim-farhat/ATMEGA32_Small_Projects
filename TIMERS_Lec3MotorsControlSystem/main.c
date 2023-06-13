@@ -625,21 +625,3 @@ void Main_voidInt0ISR(void)
 {
 	Main_u8SystemIndicator = 0;
 }
-
-
-///*Define Variables*/
-//uint16 Local_u16PotentionmeterVoltage = 0;
-//uint16 Local_u16ServoAngleTicks = 0;
-//
-///*Super Loop*/
-//while(1)
-//{
-//	/*Measure the potentiometer voltage*/
-//	ADC_u8StartConversionSynch(ADC_u8SINGLE_ENDED_CH0, &Local_u16PotentionmeterVoltage);
-//
-//	/*Map the ADC ouput to the ticks we need to control the servo*/
-//	Local_u16ServoAngleTicks = LIBRARY_s32Mapping(0, 1023, 500, 2500, Local_u16PotentionmeterVoltage);
-//
-//	/*Send ticks number to the timer 1*/
-//	TIMER1_voidSetCompValue(Local_u16ServoAngleTicks);
-//}
