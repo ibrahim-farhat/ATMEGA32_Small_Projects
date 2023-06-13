@@ -1,0 +1,58 @@
+#include "STD_TYPES.h"
+#include "DEFINES.h"
+
+#include "DIO_interface.h"
+#include "PORT_interface.h"
+#include "GIE_interface.h"
+#include "UART_interface.h"
+#include "CLCD_interface.h"
+void Main_voidTransmitNotificFunc(void);
+
+/*It is the main*/
+void main(void)
+{
+
+	PORT_voidInit();
+	CLCD_voidInit();
+	GIE_voidEnable();
+	USART_voidInit();
+
+	uint8 Ahmed[10] = "ahmed";
+	uint8 Local_u8ErrorFounder = OK;
+	uint8 Local_u8UartRead = 0u;
+	while(1)
+	{
+		USART_u8SendBufferAsynch(Ahmed, 5, Main_voidTransmitNotificFunc);
+//		Local_u8ErrorFounder = USART_u8ReceiveBufferSynch(Ahmed, 5);
+		Local_u8ErrorFounder = USART_u8Receive(&Local_u8UartRead);
+		CLCD_voidClearDisplay();
+		CLCD_u8GoToXY(0, 0);
+		CLCD_voidSendDecimalNumber(Local_u8UartRead);
+		if(Local_u8UartRead == '1')
+		{
+			DIO_u8SetPinValue(DIO_u8PORTC, DIO_u8PIN7, DIO_u8PIN_HIGH);
+		}
+		else if(Local_u8UartRead == '2')
+		{
+			DIO_u8SetPinValue(DIO_u8PORTC, DIO_u8PIN7, DIO_u8PIN_LOW);
+		}
+//		if(Local_u8ErrorFounder == OK)
+//		{
+//			DIO_u8SetPinValue(DIO_u8PORTC, DIO_u8PIN7, DIO_u8PIN_HIGH);
+
+//			USART_u8SendBufferSynch(Ahmed, 5);
+//			USART_u8SendBufferSynch("ndknf", 5);
+//		}
+//		else
+//		{
+//			DIO_u8SetPinValue(DIO_u8PORTC, DIO_u8PIN6, DIO_u8PIN_HIGH);
+//		}
+	}
+
+}
+void Main_voidTransmitNotificFunc(void)
+{
+}
+void Main_voidReceiveNotificFunc(void)
+{
+}
