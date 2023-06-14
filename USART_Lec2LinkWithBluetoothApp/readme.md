@@ -29,5 +29,3 @@ I’d like to explain how timers peripheral work:
 Timer 0: controls (light intensity – servo motor angle – DC motor speed) with CTC mode.
 Timer 1: serves ultrasonic with its input capture unit.
 Timer 2: makes the tone on the buzzer using fast PWM mode and also using compare match interrupt event.
- 
-And I don’t forget to thank Eng. Amgad Samir with his great support.
